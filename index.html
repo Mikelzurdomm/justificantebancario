@@ -1,55 +1,159 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Presupuestador Eléctrico</title>
-  <link rel="stylesheet" href="styles.css"/>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Justificante de Titularidad Bancaria</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .bank {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s ease;
+      border: 1px solid #ccc;
+    }
+    .bank:hover {
+      background: #e7f0ff;
+    }
+    .info {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      display: none;
+    }
+    .info.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-  <div class="container py-4">
-    <header class="mb-4 text-center">
-      <img src="logo.png" alt="Logo" class="mb-2" style="max-height:80px;" />
-      <h1>Presupuestador de Tarifas Eléctricas</h1>
-    </header>
-    <form id="formDatos" class="row g-3 mb-4">
-      <div class="col-md-6">
-        <label for="clienteNombre" class="form-label">Nombre Cliente</label>
-        <input type="text" class="form-control" id="clienteNombre" required/>
-      </div>
-      <div class="col-md-6">
-        <label for="dias" class="form-label">Días</label>
-        <input type="number" class="form-control" id="dias" value="30" required/>
-      </div>
-      <div class="col-md-6">
-        <label for="potencia" class="form-label">Potencia (kW)</label>
-        <input type="number" step="0.01" class="form-control" id="potencia" required/>
-      </div>
-      <div class="col-md-6">
-        <label for="facturaActual" class="form-label">Factura Actual (€)</label>
-        <input type="number" step="0.01" class="form-control" id="facturaActual" required/>
-      </div>
-      <div class="col-md-6">
-        <label for="energia" class="form-label">Consumo Energía (kWh)</label>
-        <input type="number" step="0.01" class="form-control" id="energia" required/>
-      </div>
-    </form>
-    <div class="mb-4">
-      <h3>Ofertas Disponibles</h3>
-      <div id="ofertas-container" class="row gy-2"></div>
-    </div>
-    <div class="mb-4">
-      <button id="btnCalcular" class="btn btn-primary">Calcular y Mostrar Gráfico</button>
-      <button id="btnPDF" class="btn btn-success">Generar PDF</button>
-      <button id="btnGuardar" class="btn btn-secondary">Guardar Presupuesto</button>
-      <button id="btnVerGuardados" class="btn btn-info">Ver Guardados</button>
-    </div>
-    <canvas id="chart" height="100"></canvas>
+  <h1>Cómo obtener el justificante de titularidad desde el móvil</h1>
+  <div class="grid">
+    <div class="bank" onclick="showInfo('santander')">Santander</div>
+    <div class="bank" onclick="showInfo('bbva')">BBVA</div>
+    <div class="bank" onclick="showInfo('caixabank')">CaixaBank</div>
+    <div class="bank" onclick="showInfo('sabadell')">Sabadell</div>
+    <div class="bank" onclick="showInfo('bankinter')">Bankinter</div>
+    <div class="bank" onclick="showInfo('ing')">ING</div>
+    <div class="bank" onclick="showInfo('kutxabank')">Kutxabank</div>
+    <div class="bank" onclick="showInfo('ibercaja')">Ibercaja</div>
+    <div class="bank" onclick="showInfo('openbank')">Openbank</div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="main.js"></script>
+
+  <div id="santander" class="info">
+    <h2>Santander</h2>
+    <ol>
+      <li>Accede a la app de Santander.</li>
+      <li>Selecciona la cuenta deseada.</li>
+      <li>Pulsa en "Más opciones" y luego en "Certificados".</li>
+      <li>Selecciona "Certificado de titularidad" y descarga el PDF.</li>
+    </ol>
+  </div>
+
+  <div id="bbva" class="info">
+    <h2>BBVA</h2>
+    <ol>
+      <li>Abre la app y entra en la cuenta.</li>
+      <li>Pulsa "Operar" o "Más opciones".</li>
+      <li>Selecciona "Solicitar certificado".</li>
+      <li>Elige "Titularidad" y descarga el PDF (puede tener coste).</li>
+    </ol>
+  </div>
+
+  <div id="caixabank" class="info">
+    <h2>CaixaBank</h2>
+    <ol>
+      <li>Entra en la app CaixaBankNow.</li>
+      <li>Ve a "Cuentas" > "Mis certificados".</li>
+      <li>Selecciona "Nuevo certificado" y la cuenta.</li>
+      <li>Firma y descarga (servicio de pago).</li>
+    </ol>
+  </div>
+
+  <div id="sabadell" class="info">
+    <h2>Sabadell</h2>
+    <ol>
+      <li>Accede a la app y entra en "Cuentas".</li>
+      <li>Selecciona "Gestión de cuentas" > "Certificados".</li>
+      <li>Elige la cuenta y confirma.</li>
+      <li>Firma digitalmente y descarga el PDF.</li>
+    </ol>
+  </div>
+
+  <div id="bankinter" class="info">
+    <h2>Bankinter</h2>
+    <ol>
+      <li>Abre la app y entra en "Comunicaciones".</li>
+      <li>Solicita un nuevo certificado > "Titularidad".</li>
+      <li>Elige entrega digital y espera a que esté disponible.</li>
+      <li>Descárgalo desde "Documentación".</li>
+    </ol>
+  </div>
+
+  <div id="ing" class="info">
+    <h2>ING</h2>
+    <ol>
+      <li>Inicia sesión y entra en el Área Personal.</li>
+      <li>Accede a "Extractos y certificados".</li>
+      <li>Selecciona la cuenta > "Titularidad".</li>
+      <li>Consulta y descarga el PDF gratuito.</li>
+    </ol>
+  </div>
+
+  <div id="kutxabank" class="info">
+    <h2>Kutxabank</h2>
+    <ol>
+      <li>Abre la app y entra en "Cuentas".</li>
+      <li>Busca en "Consultas" > "Certificado de titularidad".</li>
+      <li>Selecciona la cuenta y descarga el documento.</li>
+    </ol>
+  </div>
+
+  <div id="ibercaja" class="info">
+    <h2>Ibercaja</h2>
+    <ol>
+      <li>Accede a la app e ingresa en "Cuentas".</li>
+      <li>Busca "Solicitar certificados".</li>
+      <li>Selecciona la cuenta y genera el PDF.</li>
+    </ol>
+  </div>
+
+  <div id="openbank" class="info">
+    <h2>Openbank</h2>
+    <ol>
+      <li>Inicia sesión en la app y ve a "Cuentas".</li>
+      <li>Pulsa en "Más opciones" > "Certificados".</li>
+      <li>Elige "Titularidad" y descarga el PDF gratuito.</li>
+    </ol>
+  </div>
+
+  <script>
+    function showInfo(bankId) {
+      document.querySelectorAll('.info').forEach(div => div.classList.remove('active'));
+      document.getElementById(bankId).classList.add('active');
+    }
+  </script>
 </body>
 </html>
