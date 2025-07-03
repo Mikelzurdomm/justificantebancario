@@ -64,20 +64,101 @@
   </div>
 
   <!-- Información de cada banco -->
-  <div id="santander" class="info">...</div>
-  <div id="bbva" class="info">...</div>
-  <div id="caixabank" class="info">...</div>
-  <div id="sabadell" class="info">...</div>
-  <div id="bankinter" class="info">...</div>
-  <div id="ing" class="info">...</div>
-  <div id="kutxabank" class="info">...</div>
-  <div id="ibercaja" class="info">...</div>
-  <div id="openbank" class="info">...</div>
+  <div id="santander" class="info">
+    <h2>Santander</h2>
+    <ol>
+      <li>Accede a la app de Santander.</li>
+      <li>Selecciona la cuenta deseada.</li>
+      <li>Pulsa en "Más opciones" y luego en "Certificados".</li>
+      <li>Selecciona "Certificado de titularidad" y descarga el PDF.</li>
+    </ol>
+  </div>
+
+  <div id="bbva" class="info">
+    <h2>BBVA</h2>
+    <ol>
+      <li>Abre la app y entra en la cuenta.</li>
+      <li>Pulsa "Operar" o "Más opciones".</li>
+      <li>Selecciona "Solicitar certificado".</li>
+      <li>Elige "Titularidad" y descarga el PDF (puede tener coste).</li>
+    </ol>
+  </div>
+
+  <div id="caixabank" class="info">
+    <h2>CaixaBank</h2>
+    <ol>
+      <li>Entra en la app CaixaBankNow.</li>
+      <li>Ve a "Cuentas" > "Mis certificados".</li>
+      <li>Selecciona "Nuevo certificado" y la cuenta.</li>
+      <li>Firma y descarga (servicio de pago).</li>
+    </ol>
+  </div>
+
+  <div id="sabadell" class="info">
+    <h2>Sabadell</h2>
+    <ol>
+      <li>Accede a la app y entra en "Cuentas".</li>
+      <li>Selecciona "Gestión de cuentas" > "Certificados".</li>
+      <li>Elige la cuenta y confirma.</li>
+      <li>Firma digitalmente y descarga el PDF.</li>
+    </ol>
+  </div>
+
+  <div id="bankinter" class="info">
+    <h2>Bankinter</h2>
+    <ol>
+      <li>Abre la app y entra en "Comunicaciones".</li>
+      <li>Solicita un nuevo certificado > "Titularidad".</li>
+      <li>Elige entrega digital y espera a que esté disponible.</li>
+      <li>Descárgalo desde "Documentación".</li>
+    </ol>
+  </div>
+
+  <div id="ing" class="info">
+    <h2>ING</h2>
+    <ol>
+      <li>Inicia sesión y entra en el Área Personal.</li>
+      <li>Accede a "Extractos y certificados".</li>
+      <li>Selecciona la cuenta > "Titularidad".</li>
+      <li>Consulta y descarga el PDF gratuito.</li>
+    </ol>
+  </div>
+
+  <div id="kutxabank" class="info">
+    <h2>Kutxabank</h2>
+    <ol>
+      <li>Abre la app y entra en "Cuentas".</li>
+      <li>Busca en "Consultas" > "Certificado de titularidad".</li>
+      <li>Selecciona la cuenta y descarga el documento.</li>
+    </ol>
+  </div>
+
+  <div id="ibercaja" class="info">
+    <h2>Ibercaja</h2>
+    <ol>
+      <li>Accede a la app e ingresa en "Cuentas".</li>
+      <li>Busca "Solicitar certificados".</li>
+      <li>Selecciona la cuenta y genera el PDF.</li>
+    </ol>
+  </div>
+
+  <div id="openbank" class="info">
+    <h2>Openbank</h2>
+    <ol>
+      <li>Inicia sesión en la app y ve a "Cuentas".</li>
+      <li>Pulsa en "Más opciones" > "Certificados".</li>
+      <li>Elige "Titularidad" y descarga el PDF gratuito.</li>
+    </ol>
+  </div>
 
   <script>
     function showInfo(bankId) {
       document.querySelectorAll('.info').forEach(div => div.classList.remove('active'));
-      document.getElementById(bankId).classList.add('active');
+      const target = document.getElementById(bankId);
+      if (target) {
+        target.classList.add('active');
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   </script>
 </body>
